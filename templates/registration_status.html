@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<!--this table or code appear during the registration-->
+<html>
+    <head>
+        <!-- css file from static content-->
+        <link rel="stylesheet" href="{% static 'css/validetor_result.css' %}"/>
+        <!--more styling-->
+        <style>
+        #ricon {
+        display: inline-block;
+        font-size: 150%;
+        text-align: center;
+        color:red;
+        }
+        .fine {
+          text-align: center;
+          color: green;
+        }
+        .fake {
+          text-align: center;
+          color: red;
+        }
+        </style>
+    </head>
+    <body>
+        <div style="overflow-x: auto;">
+            <table>
+                    <!-- {{result}} is coming from validetorapp/views.status-->
+                    <tr>
+                        <th rowspan="2">Your Inputs</th>
+                        <th colspan="3">Registration Status is <i><b><samp style="color:#800000;">{{result}}</samp></b></i></th>
+                    </tr>
+                    <tr>
+                        <th>HTML</th>
+                        <th>JS</th>
+                        <th>API/Backend check</th>
+                    </tr>
+                    <tr>
+                        <td>Username</td>
+                        <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                        <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                        <td>No Check</td>
+                    </tr>
+                    <!-- email_status is coming from validetorapp/views.status-->
+                    <tr>
+                        <td>Email</td>
+                        <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                        <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                        {% if email_status  %}
+                        <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                        {% else %}
+                        <td><i id="ricon" class="fas fa-times"></i></td>
+                        {% endif %}
+                    </tr>
+                    <!-- phone_status is coming from validetorapp/views.status-->
+                    <tr>
+                        <td>Number</td>
+                        <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                        <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                        {% if phone_status %}
+                        <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                        {% else %}
+                        <td><i id="ricon" class="fas fa-times"></i></td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                        <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                        <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="3"><p><i id="icon" style="color:green;" class="fas fa-check"></i>= <b>PASS</b>     <i id="ricon" style="color:red;" class="fas fa-times"></i>= <b>Fake or Worng</b></p></td>
+                    </tr>
+            </table>
+        </div>
+        <br><br>
+        {% if email_status  %}
+        <p class="fine">Your Email is Fine</p>
+        {%else%}
+        <p class="fake">Don't Enter the fake emails</p>
+        {% endif %}
+        {% if phone_status %}
+        <p class="fine">Your Phone Number is Fine</p>
+        {%else%}
+        <p class="fake">Don't Enter the fake Number</p>
+        {% endif %}
+        <br>
+    </body>
+    <!--script for the icons-->
+    <script src="https://kit.fontawesome.com/b4c612e342.js" crossorigin="anonymous"></script>
+</html>

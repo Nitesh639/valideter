@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+{%load static %}
+<!--this page tell about the email and phone details-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!--bootstrap links-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/details.css' %}">
+</head>
+
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+            <div style="overflow-x: auto;">
+                <!--about_email is dictionary(coming from python code) and other are the key and it's print the value using the ninja template-->
+                <table>
+                        <tr>
+                            <th colspan="2">About Email</th>
+                        </tr>
+                        <!--email_address is of the key of the dictionary and it's print email address and same thing done in all <td>{{  ...  }}</td>-->
+                        <tr>
+                            <td>Email Address</td>
+                            <td>{{about_email.email_address}}</td>
+                        </tr>
+                        <tr>
+                            <td>Domain</td>
+                            <td>{{about_email.domain}}</td>
+                        </tr>
+                        <!--add if else condition to check the boolean values-->
+                        <tr>
+                            <td>Is Valid Syntax</td>
+                            {% if about_email.valid_syntax %}
+                            <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                            {% else %}
+                            <td><i id="ricon" class="fas fa-times"></i></td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td>Is Disposable</td>
+                            {% if about_email.disposable %}
+                            <td><i id="icon"style="color:green;" class="fas fa-check"></i></td>
+                            {% else %}
+                            <td><i id="ricon" class="fas fa-times"></i></td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td>Is Webmail</td>
+                            {% if about_email.webmail %}
+                            <td><i id="icon" style="color:green;"class="fas fa-check"></i></td>
+                            {% else %}
+                            <td><i id="ricon" class="fas fa-times"></i></td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td>Is Deliverable</td>
+                            {% if about_email.deliverable %}
+                            <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                            {% else %}
+                            <td><i id="ricon" class="fas fa-times"></i></td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td>Is Gibberish</td>
+                            {% if about_email.gibberish %}
+                            <td><i id="icon" style="color:green;" class="fas fa-check"></i></td>
+                            {% else %}
+                            <td><i id="ricon" class="fas fa-times"></i></td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td>Is Spam</td>
+                            {% if about_email.spam %}
+                            <td><i id="icon" style="color:green;"class="fas fa-check"></i></td>
+                            {% else %}
+                            <td><i id="ricon" class="fas fa-times"></i></td>
+                            {% endif %}
+                        </tr>
+                </table>
+                <br><br>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div style="overflow-x: auto;">
+                <!--about_phone is dictionary(coming from python code) and other are the key and it's print the value using the ninja template-->
+                <table>
+                        <tr>
+                            <th colspan="2">About Number</th>
+                        </tr>
+                    <!--phone is of the key of the dictionary and it's print phone number and same thing done in all <td>{{  ...  }}</td>-->
+                        <tr>
+                            <td>Phone</td>
+                            <td>{{about_phone.phone}}</td>
+                        </tr>
+                        <tr>
+                            <td>Phone Type</td>
+                            <td>{{about_phone.phone_type}}</td>
+                        </tr>
+                        <tr>
+                            <td>Phone Region(Country)</td>
+                            <td>{{about_phone.phone_region}}({{about_phone.country}})</td>
+                        </tr>
+                        <tr>
+                            <td>Carrier/Company</td>
+                            <td>{{about_phone.carrier}}</td>
+                        </tr>
+                        <tr>
+                            <td>International Number</td>
+                            <td>{{about_phone.international_number}}</td>
+                        </tr>
+                        <tr>
+                            <td>Local Number</td>
+                            <td>{{about_phone.local_number}}</td>
+                        </tr>
+                        <tr>
+                            <td>Country Code(Prefix)</td>
+                            <td>{{about_phone.country_code}}({{about_phone.country_prefix}})</td>
+                        </tr>
+                </table>
+                <br><br>
+            </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

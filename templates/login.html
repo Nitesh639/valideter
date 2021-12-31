@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>Log IN</title>
+    <link rel="stylesheet" href="{% static 'css/registration.css'%}" />
+  </head>
+
+  <body>
+<!-- block for log in form-->
+    <div class="main-block">
+      <h1>LogIN</h1>
+
+      <form action="user_status" method="post" autocomplete="off">
+        <hr>
+        <!-- this p tag activates when user enter any wrong credentials-->
+        <p style=color:red;>{{e}}</p>
+        {% csrf_token %}
+        <input type="email" name="email" id="email" placeholder="email" required/>
+        <label id="icon" for="email"><i class="fas fa-envelope"></i></label>
+        <input type="password" name="password" id="password" placeholder="Password" required/>
+        <label id="icon" for="password"><i class="fas fa-unlock-alt"></i></label>
+        <br>
+        <br>
+        <div class="btn-block">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <br><br><br><br><br><br><br>
+
+      <a href="{% url 'registration' %}">Registration <i class="fas fa-user-plus"></i></a>
+      <a href="{% url 'index' %}" style="float:right">Home <i class="fas fa-home"></i></a>
+    </div>
+
+  </body>
+<!--  JS script of fontawesome website -->
+  <script src="https://kit.fontawesome.com/b4c612e342.js" crossorigin="anonymous"></script>
+</html>

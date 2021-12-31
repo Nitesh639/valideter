@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+  <head>
+    <title>Registration Form</title>
+    <!--add the js and css file from static folders-->
+    <script src="{% static 'js/js_check.js' %}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{% static 'css/registration.css'%}" />
+  </head>
+
+  <body>
+    <div class="main-block">
+    <!--Registration form data entry-->
+      <h1>Registration</h1>
+      <form action="status" autocomplete="off" method="post" onsubmit="return js_check()">
+          <hr>
+          <!--csrf_token is for security and it's necessary for post method -->
+          {% csrf_token %}
+
+          <!--username entry-->
+          <input type="text" name="username" id="username" placeholder="Username" value="{{username}}" required/>
+          <label id="icon" for="username"><i class="fas fa-user"></i></label>
+
+          <!--    For email    -->
+          <input type="email" name="email" id="email" placeholder="Email" value="{{email}}"  required/>
+          <label id="icon" for="email"><i class="fas fa-envelope"></i></label>
+
+          <!--   for mobile number     -->
+          <input type="text" name="number" id="number" placeholder="Number" value="{{number}}" required/>
+          <label id="icon" for="number"><i class="fas fa-phone"></i></label>
+
+          <!--password entry-->
+          <input type="password" name="password" id="password" placeholder="Password" value="{{password}}" required/>
+          <label id="icon" for="password"><i class="fas fa-unlock-alt"></i></label>
+          <!-- password again-->
+          <input type="password" name="again_password" id="again_password" placeholder="Retype Password" value="{{again_password}}" required/>
+          <label id="icon" for="again_password"><i class="fas fa-unlock-alt"></i></label>
+            <p id="pproblem" style="color:red;">{{msg}}</p>
+
+          <br>
+          <br>
+          <div class="btn-block">
+            <button id="click" type="submit">Check</button>
+          </div>
+      </form>
+      <a href="{% url 'login' %}">LogIN <i class="fas fa-sign-in-alt"></i></a>
+      <a href="{% url 'index' %}" style="float:right">Home <i class="fas fa-home"></i></a>
+    </div>
+  </body>
+
+    <!--js link of the fontawesome to load the icons-->
+    <script src="https://kit.fontawesome.com/b4c612e342.js" crossorigin="anonymous"></script>
+</html>
